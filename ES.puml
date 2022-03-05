@@ -127,7 +127,7 @@ skinparam class<<policy>> {
 ' Layout
 ' ##################################
 
-!function LAYOUT_WITH_LEGEND()
+!procedure LAYOUT_WITH_LEGEND()
 hide stereotype
 legend bottom right
 |<color:$LEGEND_TITLE_FONT_COLOR>**Legend**</color> |
@@ -139,7 +139,7 @@ legend bottom right
 |<$COMMAND_BG_COLOR> <color:$COMMAND_FONT_COLOR>command</color> |
 |<$POLICY_BG_COLOR> <color:$POLICY_FONT_COLOR>policy</color> |
 endlegend
-!end function
+!end procedure
 
 !function LAYOUT_TOP_DOWN()
 top to bottom direction
