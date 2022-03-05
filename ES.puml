@@ -139,7 +139,7 @@ legend bottom right
 |<$COMMAND_BG_COLOR> <color:$COMMAND_FONT_COLOR>command</color> |
 |<$POLICY_BG_COLOR> <color:$POLICY_FONT_COLOR>policy</color> |
 endlegend
-!end procedure
+!endprocedure
 
 !function LAYOUT_TOP_DOWN()
 top to bottom direction
