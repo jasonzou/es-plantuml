@@ -127,6 +127,33 @@ skinparam class<<policy>> {
 ' Layout
 ' ##################################
 
+'from c4.puml
+!global $fix_direction=%false()
+
+!function $down($start,$end)
+!if ($fix_direction)
+!return $start+"RIGHT"+$end
+!else
+!return $start+"DOWN"+$end
+!endif
+!endfunction
+
+!function $up($start,$end)
+!if ($fix_direction)
+!return $start+"LEFT"+$end
+!else
+!return $start+"UP"+$end
+!endif
+!endfunction
+
+!function $left($start,$end)
+!if ($fix_direction)
+!return $start+"UP"+$end
+!else
+!return $start+"LEFT"+$end
+!endif
+!endfunction
+
 !procedure LAYOUT_WITH_LEGEND()
 hide stereotype
 legend bottom right
@@ -141,7 +168,14 @@ legend bottom right
 endlegend
 !endprocedure
 
+
+
 !procedure LAYOUT_TOP_DOWN()
+top to bottom direction
+!endprocedure
+
+!procedure LAYOUT_TOP_DOWN()
+!global $fix_direction=%false()
 top to bottom direction
 !endprocedure
 
