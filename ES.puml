@@ -145,9 +145,9 @@ endlegend
 top to bottom direction
 !endprocedure
 
-!function LAYOUT_LEFT_RIGHT() 
+!procedure LAYOUT_LEFT_RIGHT() 
 left to right direction
-!end function
+!endprocedure
 
 ' Boundaries
 ' ##################################
