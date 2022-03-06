@@ -141,9 +141,9 @@ legend bottom right
 endlegend
 !endprocedure
 
-!function LAYOUT_TOP_DOWN()
+!procedure LAYOUT_TOP_DOWN()
 top to bottom direction
-!end function
+!endprocedure
 
 !function LAYOUT_LEFT_RIGHT() 
 left to right direction
