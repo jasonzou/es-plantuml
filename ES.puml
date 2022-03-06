@@ -169,11 +169,6 @@ endlegend
 !endprocedure
 
 
-
-!procedure LAYOUT_TOP_DOWN()
-top to bottom direction
-!endprocedure
-
 !procedure LAYOUT_TOP_DOWN()
 !global $fix_direction=%false()
 top to bottom direction
