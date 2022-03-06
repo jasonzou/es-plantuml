@@ -154,6 +154,29 @@ skinparam class<<policy>> {
 !endif
 !endfunction
 
+!function $right($start,$end)
+!if ($fix_direction)
+!return $start+"DOWN"+$end
+!else
+!return $start+"RIGHT"+$end
+!endif
+!endfunction
+
+!procedure LAYOUT_TOP_DOWN()
+!global $fix_direction=%false()
+top to bottom direction
+!endprocedure
+
+!procedure LAYOUT_LEFT_RIGHT() 
+!global $fix_direction = %false()
+left to right direction
+!endprocedure
+
+!procedure LAYOUT_LANDSCAPE() 
+!global $fix_direction = %true()
+left to right direction
+!endprocedure
+
 !procedure LAYOUT_WITH_LEGEND()
 hide stereotype
 legend bottom right
@@ -166,16 +189,6 @@ legend bottom right
 |<$COMMAND_BG_COLOR> <color:$COMMAND_FONT_COLOR>command</color> |
 |<$POLICY_BG_COLOR> <color:$POLICY_FONT_COLOR>policy</color> |
 endlegend
-!endprocedure
-
-
-!procedure LAYOUT_TOP_DOWN()
-!global $fix_direction=%false()
-top to bottom direction
-!endprocedure
-
-!procedure LAYOUT_LEFT_RIGHT() 
-left to right direction
 !endprocedure
 
 ' Boundaries
