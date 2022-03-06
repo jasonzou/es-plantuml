@@ -123,11 +123,39 @@ skinparam class<<policy>> {
     BackgroundColor $POLICY_BG_COLOR
 }
 
-
 ' Layout
 ' ##################################
 
-'from c4.puml
+!procedure $getHideStereotype($hideStereotype)
+!if ($hideStereotype == "true")
+hide stereotype
+!endif
+!endprocedure
+
+!procedure $getLegendTable()
+<#00000000,#00000000>|<color:$LEGEND_TITLE_COLOR>**Legend**</color> |
+$showActiveLegendEntries($tagDefaultLegend)
+$showActiveLegendEntries($tagCustomLegend)
+!endprocedure
+
+!procedure $getLegendArea($areaAlias, $hideStereotype)
+$getHideStereotype($hideStereotype)
+rectangle $areaAlias<<legendArea>> [
+$getLegendTable()
+]
+!endprocedure
+
+!procedure HIDE_STEREOTYPE()
+hide stereotype
+!endprocedure
+
+!procedure LAYOUT_AS_SKETCH()
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+skinparam defaultFontName "Comic Sans MS"
+center footer <font color=red>Warning:</font> Created for discussion, needs to be validated
+!endprocedure
+
 !global $fix_direction=%false()
 
 !function $down($start,$end)
@@ -177,18 +205,29 @@ left to right direction
 left to right direction
 !endprocedure
 
-!procedure LAYOUT_WITH_LEGEND()
-hide stereotype
-legend bottom right
-|<color:$LEGEND_TITLE_FONT_COLOR>**Legend**</color> |
-|<$CONCERN_BG_COLOR> <color:$CONCERN_FONT_COLOR>concern</color> |
-|<$SYSTEM_BG_COLOR> <color:$SYSTEM_FONT_COLOR>system</color> |
-|<$EVENT_BG_COLOR> <color:$EVENT_FONT_COLOR>event</color> |
-|<$AGGREGATE_BG_COLOR> <color:$AGGREGATE_FONT_COLOR>aggregate</color> |
-|<$READ_MODEL_BG_COLOR> <color:$READ_MODEL_FONT_COLOR>read model</color> |
-|<$COMMAND_BG_COLOR> <color:$COMMAND_FONT_COLOR>command</color> |
-|<$POLICY_BG_COLOR> <color:$POLICY_FONT_COLOR>policy</color> |
+' has to be last call in diagram
+!unquoted procedure SHOW_LEGEND($hideStereotype="true")
+$getHideStereotype($hideStereotype)
+legend right
+$getLegendTable()
 endlegend
+!endprocedure
+
+/' @deprecated in favor of SHOW_LEGEND '/
+!unquoted procedure SHOW_DYNAMIC_LEGEND($hideStereotype="true")
+SHOW_LEGEND($hideStereotype)
+!endprocedure
+
+' legend is reserved and cannot be uses as alias of SHOW_FLOATING_LEGEND() therefore
+' LEGEND() is introduced. It returns the default name of the floating alias "floating_legend_alias"
+' and can be used in the Lay_Distance() calls
+!function LEGEND()
+!return "floating_legend_alias"
+!endfunction
+
+' enables that legend can be located in drawing area of the diagram. It has to be last call in diagram followed by Lay_Distance()
+!unquoted procedure SHOW_FLOATING_LEGEND($alias=LEGEND(), $hideStereotype="true")
+$getLegendArea($alias, $hideStereotype)
 !endprocedure
 
 ' Boundaries
