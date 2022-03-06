@@ -172,19 +172,19 @@ class "==$label\n\n $descr" as $alias <<concern>>
 
 !unquoted procedure System($alias, $label, $descr="")
 class "==$label\n\n $descr" as $alias <<system>> 
-!end procedure
+!endprocedure
 
 !unquoted procedure Event($alias, $label, $descr="")
 class "==$label\n\n $descr" as $alias <<event>> 
-!end procedure
+!endprocedure
 
 !unquoted procedure Aggregate($alias, $label, $descr="")
 class "==$label\n\n $descr" as $alias <<aggregate>> 
-!end procedure
+!endprocedure
 
 !unquoted procedure ReadModel($alias, $label, $descr="")
 class "==$label\n\n $descr" as $alias  <<readmodel>> 
-!end procedure
+!endprocedure
 
 !unquoted procedure Command($alias, $label, $descr="", $actor="")
 !if ($actor != "") 
@@ -192,7 +192,7 @@ class "==$label\n\n $descr" as $alias< $actor > <<command>>
 !else 
 class "==$label\n\n $descr" as $alias <<command>>
 !endif
-!end procedure
+!endprocedure
 
 !unquoted procedure Policy($alias, $label, $descr="")
 class "==$label\n\n $descr" as $alias <<policy>> 
@@ -229,8 +229,9 @@ Rel_($from, $to, $label, "<-")
 
 !unquoted procedure Rel_D($from, $to, $label="")
 Rel_($from, $to, $label, "-down->")
-!endfunction
-!unquoted function Rel_Down($from, $to, $label="")
+!endprocedure
+
+!unquoted procedure Rel_Down($from, $to, $label="")
 Rel_($from, $to, $label, "-down->")
 !endprocedure
 
