@@ -230,6 +230,19 @@ SHOW_LEGEND($hideStereotype)
 $getLegendArea($alias, $hideStereotype)
 !endprocedure
 
+!procedure LAYOUT_WITH_LEGEND()
+hide stereotype
+legend bottom right
+|<color:$LEGEND_TITLE_FONT_COLOR>**Legend**</color> |
+|<$CONCERN_BG_COLOR> <color:$CONCERN_FONT_COLOR>concern</color> |
+|<$SYSTEM_BG_COLOR> <color:$SYSTEM_FONT_COLOR>system</color> |
+|<$EVENT_BG_COLOR> <color:$EVENT_FONT_COLOR>event</color> |
+|<$AGGREGATE_BG_COLOR> <color:$AGGREGATE_FONT_COLOR>aggregate</color> |
+|<$READ_MODEL_BG_COLOR> <color:$READ_MODEL_FONT_COLOR>read model</color> |
+|<$COMMAND_BG_COLOR> <color:$COMMAND_FONT_COLOR>command</color> |
+|<$POLICY_BG_COLOR> <color:$POLICY_FONT_COLOR>policy</color> |
+endlegend
+!endprocedure
 ' Boundaries
 ' ##################################
 
