@@ -1,6 +1,7 @@
 'Event Storming
+
 'Version
-' ##################################
+'##################################
 !function ESVersion()
   !return "0.0.1"
 !end function
@@ -36,14 +37,13 @@
 !global $COMMAND_BG_COLOR = "#03A9F4"
 !global $POLICY_BG_COLOR = "#673AB7"
 
+'Styling
+'##################################
 
-' Styling
-' ##################################
-
-top to bottom direction
-hide circle 
-hide members
-hide stereotype
+'top to bottom direction
+'hide circle 
+'hide members
+'hide stereotype
 
 skinparam MinClassWidth 100
 skinparam shadowing false

@@ -1,6 +1,7 @@
 'Event Storming
+
 'Version
-' ##################################
+'##################################
 !function ESVersion()
   !return "0.0.1"
 !end function
