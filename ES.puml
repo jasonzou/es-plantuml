@@ -123,6 +123,14 @@ skinparam class<<policy>> {
     BackgroundColor $POLICY_BG_COLOR
 }
 
+skinparam shadowing<<legendArea>> false
+
+' #00000000 is transparent
+skinparam rectangle<<legendArea>> {
+    backgroundcolor #00000000
+    bordercolor #00000000
+}
+
 ' Layout
 ' ##################################
 
@@ -357,17 +365,25 @@ Rel_($from, $to, $label, "-right->")
 ' ##################################
 
 !unquoted procedure Lay_D($from, $to)
-$from -[hidden]d- $to
+$from -[hidden]D- $to
 !endprocedure
 
 !unquoted procedure Lay_U($from, $to)
-$from -[hidden]u- $to
+$from -[hidden]U- $to
 !endprocedure
 
 !unquoted procedure Lay_R($from, $to)
-$from -[hidden]r- $to
+$from -[hidden]R- $to
 !endprocedure
 
 !unquoted procedure Lay_L($from, $to)
-$from -[hidden]l- $to
+$from -[hidden]L- $to
+!endprocedure
+
+
+' PlantUML bug: lines which does "not match" with the orientation/direction of the diagram
+' uses the same length therefore the method offers no direction at all.
+' If a direction is required the Lay_...() methods can be used
+!unquoted procedure Lay_Distance($from, $to, $distance="0")
+$from $getHiddenLine($distance) $to
 !endprocedure
