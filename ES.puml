@@ -255,7 +255,7 @@ endlegend
 ' ##################################
 
 !unquoted procedure BoundedContext($alias, $label)
-rectangle "====$label\n<size:12>BoundedContext</size>" <<boundary>>  as $alias 
+rectangle "==$label==\n<size:12>BoundedContext</size>" <<boundary>>  as $alias 
 !endprocedure
 
 ' Groups
