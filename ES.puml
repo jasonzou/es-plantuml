@@ -256,7 +256,7 @@ endlegend
 
 
 !unquoted procedure $EventStormingElement($alias, $description="", $label="", $type="", $size=12, $colour="green")
-rectangle "$label\n<size:$size>BoundedContext</size>" <<$type>> as $alias
+rectangle "=$label\n<size:$size>BoundedContext</size>" <<$type>> as $alias
 !endprocedure
 
 !unquoted procedure BoundedContext($alias, $label)
