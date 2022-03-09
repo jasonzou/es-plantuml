@@ -254,8 +254,19 @@ endlegend
 ' Boundaries
 ' ##################################
 
+
+!unquoted procedure $EventStormingElement($alias, $description="", $label="", $technology="", $size=12, $colour="green")
+rectangle "
+<color:$colour><<$alias>></color>
+==$label==
+//<size:$size>[$technology]</size>//
+
+  $description" <<boundary>> as $alias
+!endprocedure
+
 !unquoted procedure BoundedContext($alias, $label)
-rectangle "==$label==\n<size:12>BoundedContext</size>" <<boundary>>  as $alias 
+'rectangle "==$label==\n<size:12>BoundedContext</size>" <<boundary>>  as $alias 
+$EventStormingElement($alias, "This description is %newline()on several lines", $label, $size=10, $technology="Java")
 !endprocedure
 
 ' Groups
