@@ -129,6 +129,14 @@ skinparam class<<policy>> {
     BackgroundColor $POLICY_BG_COLOR
 }
 
+skinparam title{
+    TitleFontSize 16
+}
+
+skinparam footer{
+    FooterFontSize 10
+}
+
 ' Layout
 ' ##################################
 !procedure HIDE_STEREOTYPE()
