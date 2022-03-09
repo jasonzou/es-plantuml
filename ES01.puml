@@ -73,8 +73,10 @@ skinparam Arrow {
 }
 
 skinparam rectangle<<group>> {
-    FontColor transparent
-    BorderColor transparent
+    StereotypeFontColor $GROUP_FONT_COLOR
+    FontColor $GROUP_FONT_COLOR
+    BackgroundColor $GROUP_BG_COLOR
+    BorderColor $GROUP_BORDER_COLOR
 }
 
 skinparam rectangle<<boundary>> {
@@ -83,7 +85,7 @@ skinparam rectangle<<boundary>> {
     BorderStyle dashed
 }
 
-skinparam class<<ISSUE>> {
+skinparam class<<issue>> {
     FontColor $ISSUE_FONT_COLOR
     BorderColor $BORDER_COLOR
     BackgroundColor $ISSUE_BG_COLOR
