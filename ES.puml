@@ -1,4 +1,6 @@
-'Event Storming
+'++++++++++++++++++++++++++++++++++
+'         Event Storming
+'----------------------------------
 
 'Version
 '##################################
@@ -8,7 +10,6 @@
 
 'Colors
 '##################################
-
 !global $ARROW_FONT_COLOR = "#263238"
 
 !global $BOUNDARY_FONT_COLOR = "#263238"
@@ -39,11 +40,10 @@
 
 'Styling
 '##################################
-
-'top to bottom direction
-'hide circle 
-'hide members
-'hide stereotype
+top to bottom direction
+hide circle 
+hide members
+hide stereotype
 
 skinparam MinClassWidth 100
 skinparam shadowing false
