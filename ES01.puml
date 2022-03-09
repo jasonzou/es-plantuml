@@ -1,5 +1,4 @@
 @startuml
-@startuml
 !include https://raw.githubusercontent.com/jasonzou/es-plantuml/master/ES.puml
 
 'Start the event storming digram
@@ -18,8 +17,8 @@ Aggregate(tt3, "Aggregate Test", "test01" )
 
 Actor(j, "Archivist", "Working at archives")
 Rel(j, tt1, "Trigger the command")
-Rel(j, tt0, "Trigger the command")
-Rel_D(tt1, tt2)
+Rel(j, tt0, "Trigger the command ")
+Rel_D(tt1, tt2, "jdfjklfsda")
 Rel(tt1, tt2)
 Rel(tt2, tt3)
 
