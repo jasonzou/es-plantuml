@@ -255,18 +255,18 @@ endlegend
 ' ##################################
 
 
-!unquoted procedure $EventStormingElement($alias, $description="", $label="", $technology="", $size=12, $colour="green")
+!unquoted procedure $EventStormingElement($alias, $description="", $label="", $type="", $size=12, $colour="green")
 rectangle $alias as "
 <color:$colour><<$alias>></color>
 ==$label==
-//<size:$size>[$technology]</size>//
+//<size:$size>[$type]</size>//
 
-  $description" <<boundary>> 
+  $description" <<$type>> 
 !endprocedure
 
 !unquoted procedure BoundedContext($alias, $label)
 'rectangle "==$label==\n<size:12>BoundedContext</size>" <<boundary>>  as $alias 
-$EventStormingElement($alias, "This description is %newline()on several lines", $label, $size=10, $technology="Java")
+$EventStormingElement($alias, "This description is %newline()on several lines", $label, $type="boundary", $size=10 )
 !endprocedure
 
 ' Groups
