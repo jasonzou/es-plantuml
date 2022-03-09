@@ -212,7 +212,7 @@ actor "$label\n\n$descr" as $alias <<actor>>
 ' ##################################
 !unquoted function Label_($label="")
 !if ($label != "")
-!return : $label
+!return ": $label sdds"
 !else 
 !return ""
 !endif

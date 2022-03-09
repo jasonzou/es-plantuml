@@ -15,11 +15,11 @@ Event(tt2, "Event Test", "test01" )
 Aggregate(tt3, "Aggregate Test", "test01" )
 }
 
-Actor(j, "Archivist", "Working at archives")
+Actor(j, "Archivist", "Working ata archives")
 Rel(j, tt1, "Trigger the command")
 Rel(j, tt0, "Trigger the command ")
 Rel_D(tt1, tt2, "jdfjklfsda")
-Rel_D(tt1, tt2, "jdfjklfdddsda")
+Rel_D(tt1, tt2, "jdfjkld fdddsda")
 
 Rel(tt1, tt2)
 Rel(tt2, tt3)
