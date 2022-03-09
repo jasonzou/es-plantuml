@@ -14,6 +14,10 @@
 '##################################
 !global $ARROW_FONT_COLOR = "#263238"
 
+!global $GROUP_FONT_COLOR = "#263238"
+!global $GROUP_BORDER_COLOR = "#263238"
+!global $GROUP_BG_COLOR = "#EF5350"
+
 !global $BOUNDARY_FONT_COLOR = "#263238"
 !global $BOUNDARY_BORDER_COLOR = "#263238"
 
