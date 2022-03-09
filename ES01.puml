@@ -16,7 +16,7 @@
 
 !global $GROUP_FONT_COLOR = "#263238"
 !global $GROUP_BORDER_COLOR = "#263238"
-!global $GROUP_BG_COLOR = "#EF5350"
+!global $GROUP_BG_COLOR = "transparent"
 
 !global $BOUNDARY_FONT_COLOR = "#263238"
 !global $BOUNDARY_BORDER_COLOR = "#263238"
@@ -39,7 +39,7 @@
 !global $ISSUE_BG_COLOR = "#EF5350"
 !global $SYSTEM_BG_COLOR = "#F06292"
 !global $EVENT_BG_COLOR = "#FF9800"
-!global $AGGREGATE_BG_COLOR = "#FFEB3B"
+!global $AGGREGATE_BG_COLOR = "#AACC33"
 !global $READ_MODEL_BG_COLOR = "#4CAF50"
 !global $COMMAND_BG_COLOR = "#03A9F4"
 !global $POLICY_BG_COLOR = "#673AB7"
@@ -165,12 +165,10 @@ $getLegendTable()
 !endprocedure
 
 !procedure LAYOUT_TOP_DOWN()
-!global $fix_direction=%false()
 top to bottom direction
 !endprocedure
 
 !procedure LAYOUT_LEFT_RIGHT() 
-!global $fix_direction = %false()
 left to right direction
 !endprocedure
 
@@ -186,7 +184,7 @@ legend bottom right
 |<color:$LEGEND_TITLE_FONT_COLOR>**Legend**</color> |
 |<$COMMAND_BG_COLOR> <color:$COMMAND_FONT_COLOR>command</color> |
 |<$EVENT_BG_COLOR> <color:$EVENT_FONT_COLOR>event</color> |
-|<$AGGREGATE_BG_COLOR> <color:$AGGREGATE_FONT_COLOR>aggregate*</color> |
+|<$AGGREGATE_BG_COLOR> <color:$AGGREGATE_FONT_COLOR>document/aggregate*</color> |
 |<$READ_MODEL_BG_COLOR> <color:$READ_MODEL_FONT_COLOR>read model</color> |
 |<$ISSUE_BG_COLOR> <color:$ISSUE_FONT_COLOR>issue</color> |
 |<$POLICY_BG_COLOR> <color:$POLICY_FONT_COLOR>policy</color> |
@@ -250,7 +248,8 @@ actor "$label\n\n$descr" as $alias <<actor>>
 !endprocedure
 
 !unquoted procedure Rel_($alias1, $alias2, $label, $direction="")
-$alias1 $direction $alias2 Label_($label)
+$alias1 $direction $alias2 
+'Label_($label)
 !endprocedure
 
 !unquoted procedure Rel($from, $to, $label="")
@@ -304,33 +303,50 @@ Rel_($from, $to, $label, "-right->")
 'Testing Area
 HIDE_STEREOTYPE()
 LAYOUT_WITH_LEGEND()
-LAYOUT_LEFT_RIGHT()
 BoundedContext(accesion, "test 01"){
-Issue(tt0, "Test", "test01" )
-Command(tt1, "Test", "test01" )
-Event(tt2, "Test", "test01" )
-Aggregate(tt3, "Test", "test01" )
+Issue(tt0, "Issue Test", "test01" )
+Command(tt1, "Command Test", "test01" )
+Event(tt2, "Event Test", "test01" )
+Aggregate(tt3, "Aggregate Test", "test01" )
 }
 
 Actor(j, "Archivist", "Working at archives")
 Rel(j, tt1, "Trigger the command")
+Rel(j, tt0, "Trigger the command")
+Rel_D(tt1, tt2)
 Rel(tt1, tt2)
 Rel(tt2, tt3)
 
+note right of j
+The card types bounded context is displayed last instead of first.
+
+The card types are displayed in order but not kept on one line.
+
+Also this note is supposed to be at the bottom of the bounded context.
+endnote
+
 BoundedContext(accession, "Accession"){
+    Group(commandOrder){
     Command(placeOrder, "Create x Order") 
     Command(cancelOrder, "Cancel Order")
     Command(validateOrder, "Validate Order")
     Command(changeOrder, "Change Order")
     Command(saveOrder, "Save Order")
     Command(deleteOrder, "Delete Order")
+    }
+    Group(eventOrder){
     Event(orderPlaced, "Order Placed") 
     Event(orderCancelled, "Order Cancelled")
     Event(orderValidated, "Order Validated")
+    }
 }
-Rel(j, placeOrder)
-Rel(j, cancelOrder)
-Rel(j, validateOrder)
+Actor(j1, "Archivist", "Working at archives")
+Rel(j1, placeOrder)
+Rel(j1, cancelOrder)
+Rel(j1, validateOrder)
+
 Rel(placeOrder, orderPlaced)
+
+Rel(cancelOrder, orderCancelled)
 
 @enduml
