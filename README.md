@@ -45,3 +45,13 @@ This might be possible by creating a new layout engine for graphviz and offering
 ### No auto-wrap for box descriptions
 
 PlantUML has an option called WrapWidth that I was hoping to use, but it doesn't apply to the description lines in the cards I've created. Under the hood, I'm using classes for cards. The wrapwidth option would work if I used rectangles instead, but then I'd lose some other important features that I get with classes but not with rectangles.
+
+## Event Storming Language
+### Domain Event (something changed) - Fact
+### Command (from user) (Change something) - Intent
+### Issue (Needs attention!)
+### Actor (User Category)
+### Read Model (Data used to make decision)
+### External System (3rd party)
+### Policy (<-Whenever Then->) Can be manual or automatic
+### Aggregate (Entity with state) 
