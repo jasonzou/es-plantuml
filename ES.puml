@@ -256,12 +256,12 @@ endlegend
 
 
 !unquoted procedure $EventStormingElement($alias, $description="", $label="", $technology="", $size=12, $colour="green")
-rectangle "
+rectangle $alias as "
 <color:$colour><<$alias>></color>
 ==$label==
 //<size:$size>[$technology]</size>//
 
-  $description" <<boundary>> as $alias
+  $description" <<boundary>> 
 !endprocedure
 
 !unquoted procedure BoundedContext($alias, $label)
