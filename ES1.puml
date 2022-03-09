@@ -129,7 +129,6 @@ skinparam class<<policy>> {
 ' ##################################
 
 !procedure LAYOUT_WITH_LEGEND()
-hide stereotype
 legend bottom right
 |<color:$LEGEND_TITLE_FONT_COLOR>**Legend**</color> |
 |<$CONCERN_BG_COLOR> <color:$CONCERN_FONT_COLOR>concern</color> |
@@ -167,6 +166,104 @@ rectangle "Group" <<group>> as $alias
 ' Elements
 ' ##################################
 
+' Elements
+' ##################################
+
+!function $getComponent($label, $techn, $descr, $sprite)
+!if ($descr == "") && ($sprite == "")
+!return '=='+$label+'\n//<size:'+$TECHN_FONT_SIZE+'>['+$techn+']</size>//'
+!endif
+!if ($descr == "") && ($sprite != "")
+!return '<$'+$sprite+'>\n=='+$label+'\n//<size:'+$TECHN_FONT_SIZE+'>['+$techn+']</size>//'
+!endif
+!if ($descr != "") && ($sprite == "")
+!return '=='+$label+'\n//<size:'+$TECHN_FONT_SIZE+'>['+$techn+']</size>//\n\n '+$descr
+!endif
+!if ($descr != "") && ($sprite != "")
+!return '<$'+$sprite+'>\n=='+$label+'\n//<size:'+$TECHN_FONT_SIZE+'>['+$techn+']</size>//\n\n '+$descr
+!endif
+!endfunction
+
+!function $getContainer($label, $techn, $descr, $sprite)
+!if ($descr == "") && ($sprite == "")
+!return '=='+$label+'\n//<size:'+$TECHN_FONT_SIZE+'>['+$techn+']</size>//'
+!endif
+!if ($descr == "") && ($sprite != "")
+!return '<$'+$sprite+'>\n=='+$label+'\n//<size:'+$TECHN_FONT_SIZE+'>['+$techn+']</size>//'
+!endif
+!if ($descr != "") && ($sprite == "")
+!return '=='+$label+'\n//<size:'+$TECHN_FONT_SIZE+'>['+$techn+']</size>//\n\n '+$descr
+!endif
+!if ($descr != "") && ($sprite != "")
+!return '<$'+$sprite+'>\n=='+$label+'\n//<size:'+$TECHN_FONT_SIZE+'>['+$techn+']</size>//\n\n '+$descr
+!endif
+!endfunction
+
+!unquoted procedure Container($alias, $label, $techn, $descr="", $sprite="")
+rectangle "$getContainer($label, $techn, $descr, $sprite)" <<container>> as $alias
+!endprocedure
+
+
+' Elements
+' ##################################
+
+!function $getPerson($label, $descr, $sprite)
+!if ($descr == "") && ($sprite == "")
+!return '<$person>\n=='+$label
+!endif
+!if ($descr == "") && ($sprite != "")
+!return '<$'+$sprite+'>\n=='+$label
+!endif
+!if ($descr != "") && ($sprite == "")
+!return '<$person>\n=='+$label+'\n\n '+$descr
+!endif
+!if ($descr != "") && ($sprite != "")
+!return '<$'+$sprite+'>\n=='+$label+'\n\n '+$descr
+!endif
+!endfunction
+
+!function $getSystem($label, $descr, $sprite)
+!if ($descr == "") && ($sprite == "")
+!return '=='+$label
+!endif
+!if ($descr == "") && ($sprite != "")
+!return '<$'+$sprite+'>\n=='+$label
+!endif
+!if ($descr != "") && ($sprite == "")
+!return '=='+$label+'\n\n '+$descr
+!endif
+!if ($descr != "") && ($sprite != "")
+!return '<$'+$sprite+'>\n=='+$label+'\n\n '+$descr
+!endif
+!endfunction
+
+!unquoted procedure Person($alias, $label, $descr="", $sprite="")
+rectangle "$getPerson($label, $descr, $sprite)" <<person>> as $alias
+!endprocedure
+
+!unquoted procedure Person_Ext($alias, $label, $descr="", $sprite="")
+rectangle "$getPerson($label, $descr, $sprite)" <<external_person>> as $alias
+!endprocedure
+
+!unquoted procedure System($alias, $label, $descr="", $sprite="")
+rectangle "$getSystem($label, $descr, $sprite)" <<system>> as $alias
+!endprocedure
+
+!unquoted procedure System_Ext($alias, $label, $descr="", $sprite="")
+rectangle "$getSystem($label, $descr, $sprite)" <<external_system>> as $alias
+!endprocedure
+
+' Boundaries
+' ##################################
+
+!unquoted function Enterprise_Boundary($alias, $label)
+!return Boundary($alias, $label, "Enterprise")
+!endfunction
+!unquoted function System_Boundary($alias, $label)
+!return Boundary($alias, $label, "System")
+!endfunction
+
+
 !unquoted procedure Concern($alias, $label, $descr="")
 class "==$label\n\n $descr" as $alias <<concern>> 
 !endprocedure
@@ -199,82 +296,124 @@ class "==$label\n\n $descr" as $alias <<command>>
 class "==$label\n\n $descr" as $alias <<policy>> 
 !endprocedure
 
+' Boundaries
+' ##################################
+
+!unquoted function Boundary($alias, $label)
+!return 'rectangle "=='+$label+'" <<boundary>> as '+$alias
+!endfunction
+!unquoted function Boundary($alias, $label, $type)
+!return 'rectangle "=='+$label+'\n<size:'+$TECHN_FONT_SIZE+'>['+$type+']</size>" <<boundary>> as '+$alias
+!endfunction
+
+' Relationship
+' ##################################
 ' Relationship
 ' ##################################
 
-!unquoted procedure Label_($label="")
-!if ($label != "")
-: $label
-!endif
-!endprocedure
-
 !unquoted procedure Rel_($alias1, $alias2, $label, $direction="")
-$alias1 $direction $alias2 Label_($label)
+$alias1 $direction $alias2 : **$label**
+!endprocedure
+!unquoted procedure Rel_($alias1, $alias2, $label, $techn, $direction="")
+$alias1 $direction $alias2 : **$label**\n//<size:$TECHN_FONT_SIZE>[$techn]</size>//
 !endprocedure
 
-!unquoted procedure Rel($from, $to, $label="")
-Rel_($from, $to, $label, "-->") 
+!unquoted procedure Rel($from, $to, $label)
+Rel_($from, $to, $label, "-->>")
+!endprocedure
+!unquoted procedure Rel($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-->>")
 !endprocedure
 
-!unquoted procedure Rel_Back($from, $to, $label="")
-Rel_($from, $to, $label, "<--")
+!unquoted procedure Rel_Back($from, $to, $label)
+Rel_($from, $to, $label, "<<--")
+!endprocedure
+!unquoted procedure Rel_Back($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "<<--")
 !endprocedure
 
-!unquoted procedure Rel_Neighbor($from, $to, $label="")
-Rel_($from, $to, $label, "->")
-!endproceduren
-
-!unquoted procedure Rel_Back_Neighbor($from, $to, $label="")
-Rel_($from, $to, $label, "<-")
+!unquoted procedure Rel_Neighbor($from, $to, $label)
+Rel_($from, $to, $label, "->>")
+!endprocedure
+!unquoted procedure Rel_Neighbor($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "->>")
 !endprocedure
 
-!unquoted procedure Rel_D($from, $to, $label="")
-Rel_($from, $to, $label, "-down->")
+!unquoted procedure Rel_Back_Neighbor($from, $to, $label)
+Rel_($from, $to, $label, "<<-")
+!endprocedure
+!unquoted procedure Rel_Back_Neighbor($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "<<-")
 !endprocedure
 
-!unquoted procedure Rel_Down($from, $to, $label="")
-Rel_($from, $to, $label, "-down->")
+'--- UP -----------------------------
+!unquoted procedure Rel_U($from, $to, $label)
+Rel_($from, $to, $label, "-UP->>")
+!endprocedure
+!unquoted procedure Rel_U($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-UP->>")
+!endprocedure
+!unquoted procedure Rel_Up($from, $to, $label)
+Rel_($from, $to, $label, "-UP->>")
+!endprocedure
+!unquoted procedure Rel_Up($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-UP->>")
 !endprocedure
 
-!unquoted procedure Rel_U($from, $to, $label="")
-Rel_($from, $to, $label, "-up->")
+!unquoted procedure Rel_D($from, $to, $label)
+Rel_($from, $to, $label, "-DOWN->>")
+!endprocedure
+!unquoted procedure Rel_D($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-DOWN->>")
+!endprocedure
+!unquoted procedure Rel_Down($from, $to, $label)
+Rel_($from, $to, $label, "-DOWN->>")
+!endprocedure
+!unquoted procedure Rel_Down($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-DOWN->>")
 !endprocedure
 
-!unquoted procedure Rel_Up($from, $to, $label="")
-Rel_($from, $to, $label, "-up->")
+!unquoted procedure Rel_L($from, $to, $label)
+Rel_($from, $to, $label, "-LEFT->>")
+!endprocedure
+!unquoted procedure Rel_L($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-LEFT->>")
+!endprocedure
+!unquoted procedure Rel_Left($from, $to, $label)
+Rel_($from, $to, $label, "-LEFT->>")
+!endprocedure
+!unquoted procedure Rel_Left($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-LEFT->>")
 !endprocedure
 
-!unquoted procedure Rel_L($from, $to, $label="")
-Rel_($from, $to, $label, "-left->")
+!unquoted procedure Rel_R($from, $to, $label)
+Rel_($from, $to, $label, "-RIGHT->>")
+!endprocedure
+!unquoted procedure Rel_R($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-RIGHT->>")
+!endprocedure
+!unquoted procedure Rel_Right($from, $to, $label)
+Rel_($from, $to, $label, "-RIGHT->>")
+!endprocedure
+!unquoted procedure Rel_Right($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "-RIGHT->>")
 !endprocedure
 
-!unquoted procedure Rel_Left($from, $to, $label="")
-Rel_($from, $to, $label, "-left->")
-!endprocedure
 
-!unquoted procedure Rel_R($from, $to, $label="")
-Rel_($from, $to, $label, "-right->")
-!endprocedure
-
-!unquoted procedure Rel_Right($from, $to, $label="")
-Rel_($from, $to, $label, "-right->")
-!endprocedure
 
 ' Layout Helpers
 ' ##################################
 
 !unquoted procedure Lay_D($from, $to)
-$from -[hidden]d- $to
+$from -[hidden]D- $to
 !endprocedure
-
 !unquoted procedure Lay_U($from, $to)
-$from -[hidden]u- $to
+$from -[hidden]U- $to
 !endprocedure
-
 !unquoted procedure Lay_R($from, $to)
-$from -[hidden]r- $to
+$from -[hidden]R- $to
 !endprocedure
-
 !unquoted procedure Lay_L($from, $to)
-$from -[hidden]l- $to
+$from -[hidden]L- $to
 !endprocedure
+'==========================================
