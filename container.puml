@@ -1,6 +1,6 @@
-!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+!include https://raw.githubusercontent.com/jasonzou/es-plantuml/ES.puml
 ' uncomment the following line and comment the first to use locally
-' !include C4_Container.puml
+' !include ES.puml
 
 ' Scope: A single container.
 ' Primary elements: Components within the container in scope.
