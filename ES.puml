@@ -210,15 +210,16 @@ actor "$label\n\n$descr" as $alias <<actor>>
 
 ' Relationship
 ' ##################################
-!unquoted procedure Label_($label="")
+!unquoted function Label_($label="")
 !if ($label != "")
-: $label
+!return ": $label"
+!else 
+!return ""
 !endif
-!endprocedure
+!endfunction
 
 !unquoted procedure Rel_($alias1, $alias2, $label, $direction="")
-$alias1 $direction $alias2 
-'Label_($label)
+$alias1 $direction $alias2 Label_($label)
 !endprocedure
 
 !unquoted procedure Rel($from, $to, $label="")
