@@ -6,7 +6,7 @@
 LAYOUT_LEFT_RIGHT()
 
 ' layout top down is the default, so isn't really required
-' LAYOUT_TOP_DOWN()
+'LAYOUT_TOP_DOWN()
 
 LAYOUT_WITH_LEGEND()
 
