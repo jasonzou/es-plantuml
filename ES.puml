@@ -51,11 +51,11 @@ hide stereotype
 
 skinparam MinClassWidth 100
 skinparam shadowing false
-skinparam nodesep 50
-skinparam ranksep 50
+skinparam nodesep 10
+skinparam ranksep 10
 skinparam defaultTextAlignment center
 
-skinparam wrapWidth 500
+skinparam wrapWidth 100
 
 ' strangely setting the legend font color to white also
 ' turns the borders white - which is what I want...
