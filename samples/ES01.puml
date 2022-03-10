@@ -8,7 +8,8 @@ footer Copyright 2022
 
 HIDE_STEREOTYPE()
 LAYOUT_WITH_LEGEND()
-
+LAYOUT_LEFT_RIGHT()
+skinparam actorStyle awesome
 BoundedContext(accesion, "test s01"){
 Issue(tt0, "Issue Test", "test0d1" )
 Command(tt1, "Command Test", "test01" )

@@ -1,9 +1,11 @@
 # es-plantuml
 Event storming PlantUML diagram template and VS Code snippets
 
-## Warning - Incomplete
+## Warning - verison 0.0.1 
 
-I started working on this event-storming plant uml template inspired by [C4-PlantUML](https://github.com/adrianvlupu/C4-PlantUML) but found it impractical to use due to layout limitations in PlantUML.  Event storming relies a great deal on being able to position elements relative to other elements. PlantUML supports this in theory, but in practice I found the layout results to be unpredicable. See [Known Issues] for more details.
+I found this github project when I was searching for a tool for learning event storming. The original author states >I started working on this event-storming plant uml template inspired by [C4-PlantUML](https://github.com/adrianvlupu/C4-PlantUML) but found it impractical to use due to layout limitations in PlantUML.  Event storming relies a great deal on being able to position elements relative to other elements. PlantUML supports this in theory, but in practice I found the layout results to be unpredicable. See [Known Issues] for more details.
+
+She is mostly right. But I was able to make this work with some minor changes.
 
 ## Sample Diagrams
 
@@ -21,11 +23,9 @@ Source: [samples/EventModelLeftRight.puml](samples/EventModelLeftRight.puml)
 
 ## Known Issues
 
-There are some significant issues with this template that have made me abandon it for now. I might pick it up again sometime in the future if I can figure out some reasonable ways to solve these.
-
 ### Layout is difficult 
 
-Unfortunately, layout options in PlantUML produce rather inconsistent results - especially when dealing with groups of items. It seems to be impossible to consistently ensure that groups of items are positioned the way you want relative to other groups of items.
+Unfortunately, layout options in PlantUML is difficult.
 
 In an ideal world, the layout engine would:
 * default to displaying each card from left to right in the order that they are listed in the file

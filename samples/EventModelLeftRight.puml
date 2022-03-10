@@ -1,5 +1,5 @@
 @startuml Feature_Explorer_Event_Model
-!include ES.puml
+!include https://raw.githubusercontent.com/jasonzou/es-plantuml/master/ES.puml
 
 'left to right layout actually seems to produce more of a top
 'down layout - but also messes up other things like note placement
@@ -13,7 +13,7 @@ LAYOUT_WITH_LEGEND()
 title **Event Storming Diagram**
 
 BoundedContext(allCardTypes, "All Card Types") {
-Concern(concern, "A Concern")
+Issue(concern, "A Concern")
 System(system, "A System")
 Event(event, "An Event")
 Aggregate(aggregate, "An aggregate card", "Aggregates are also groups...")
@@ -45,8 +45,8 @@ BoundedContext(orders, "Orders"){
     Event(orderCancelled, "Order Cancelled", "")
     Event(orderValidated, "Order Validated", "")
   }  
-  Lay_L(orderAggregate, orderCommands)
-  Lay_R(orderAggregate, orderEvents)
+  Rel_L(orderAggregate, orderCommands)
+  Rel_R(orderAggregate, orderEvents)
 }
 note bottom of orders
 The groups are displayed in reverse order for some reason and 
@@ -71,22 +71,22 @@ BoundedContext(sampleContext, "Sample Context"){
   Command(c4, "four", "")
   Command(c5, "five", "")
   Aggregate(a2, "two", "")
-  Lay_L(a1, c1) 
-  Lay_D(c1, c2)
-  Lay_D(c2, c3)
-  Lay_R(a1, e1)
-  Lay_D(e1, e2)
-  Lay_L(a2, c4)
-  Lay_R(a2, e4)
-  Lay_L(a2, c4) 
-  Lay_D(c4, c5)
-  Lay_R(a2, e4)
-  Lay_D(e4, e5)
-  Lay_D(e5, e6)
-  Lay_D(e6, e7)
-  Lay_D(e7, e8)
-  Lay_L(a2, c4)
-  Lay_D(c4, c5)
+  Rel_L(a1, c1) 
+  Rel_D(c1, c2)
+  Rel_D(c2, c3)
+  Rel_R(a1, e1)
+  Rel_D(e1, e2)
+  Rel_L(a2, c4)
+  Rel_R(a2, e4)
+  Rel_L(a2, c4) 
+  Rel_D(c4, c5)
+  Rel_R(a2, e4)
+  Rel_D(e4, e5)
+  Rel_D(e5, e6)
+  Rel_D(e6, e7)
+  Rel_D(e7, e8)
+  Rel_L(a2, c4)
+  Rel_D(c4, c5)
 }
 note bottom of sampleContext
 With a lot of effort I can get commands, aggregates,
